@@ -4,9 +4,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def home(requests):
-    return HttpResponse(
-        'this is home View'
-    )
+    return render(requests, 'dark.html')
 
 def about(requests):
     return HttpResponse(
