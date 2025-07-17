@@ -32,9 +32,12 @@
     <link rel="alternate stylesheet" type="text/css" title="red" href="{% static 'css/skins/red.css' %}">
     <link rel="alternate stylesheet" type="text/css" title="yellowgreen" href="{% static 'css/skins/yellowgreen.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styleswitcher.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 
     <!-- Modernizr JS File -->
     <script src="{% static 'js/modernizr.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   </head>
   <body class="dark home-page">
     <!-- Live Style Switcher Starts - demo only -->
@@ -270,7 +273,7 @@
                       <h3 class="text-uppercase custom-title mb-0 ft-wt-600">personal infos</h3>
                     </div>
                     <div class="col-12 d-block d-sm-none">
-                      <img src="{% static 'img/img-mobile.jpg' %}" class="img-fluid main-img-mobile" alt="my picture">
+                      <img src="{% static 'img/erfan.jpg' %}" class="img-fluid main-img-mobile" alt="my picture">
                     </div>
                     <div class="col-6">
                       <ul class="about-list list-unstyled open-sans-font">
@@ -788,31 +791,22 @@
                   <p class="open-sans-font mb-3">Feel free to get in touch with me. I am always open to discussing new projects, creative ideas or opportunities to be part of your visions.</p>
                   <p class="open-sans-font custom-span-contact position-relative">
                     <i class="fa fa-envelope-open position-absolute"></i>
-                    <span class="d-block">mail me</span>steve@mail.com
+                    <span class="d-block">mail me</span>erfan6235@gmail.com
                   </p>
                   <p class="open-sans-font custom-span-contact position-relative">
                     <i class="fa fa-phone-square position-absolute"></i>
-                    <span class="d-block">call me</span>+216 21 184 010
+                    <span class="d-block">call me</span>+989309747005
                   </p>
                   <ul class="social list-unstyled pt-1 mb-5">
-                    <li class="facebook">
-                      <a title="Facebook" href="#">
-                        <i class="fa fa-facebook"></i>
+                    <li class="Instagram">
+                      <a title="Instagram" href="https://www.instagram.com/_erfanrazavi/" target="_blank">
+                        <i class="fa fa-instagram"></i>
                       </a>
                     </li>
-                    <li class="twitter">
-                      <a title="Twitter" href="#">
-                        <i class="fa fa-twitter"></i>
-                      </a>
-                    </li>
-                    <li class="youtube">
-                      <a title="Youtube" href="#">
-                        <i class="fa fa-youtube"></i>
-                      </a>
-                    </li>
-                    <li class="dribbble">
-                      <a title="Dribbble" href="#">
-                        <i class="fa fa-dribbble"></i>
+                   
+                    <li class="Telegram">
+                      <a title="Telegram" href="https://t.me/ierfanrazavi" target="_blank">
+                        <i class="fa fa-telegram"></i>
                       </a>
                     </li>
                   </ul>
@@ -820,7 +814,9 @@
                 <!-- Left Side Ends -->
                 <!-- Contact Form Starts -->
                 <div class="col-12 col-lg-8">
-                  <form class="contactform" method="post" action="php/process-form.php">
+                  <form class="contactform" method="post" action="{% url "main:home" %}">
+                    {% csrf_token %}
+
                     <div class="contactform">
                       <div class="row">
                         <div class="col-12 col-md-4">
@@ -845,6 +841,38 @@
                       </div>
                     </div>
                   </form>
+                  
+                    <!-- Success message popup -->
+                    {% if messages %}
+                    <script>
+                      {% for message in messages %}
+                        Swal.fire({
+                          title: "{{ message.tags|capfirst }}",
+                          text: "{{ message|escapejs }}",
+                          icon: "{% if 'success' in message.tags %}success{% elif 'error' in message.tags %}error{% else %}info{% endif %}",
+                          confirmButtonText: 'OK'
+                        });
+                      {% endfor %}
+                    </script>
+                    {% endif %}
+
+                    <!-- Display form validation errors in a popup -->
+                    {% if form.errors %}
+                    <script>
+                      let errorMessages = "";
+                      {% for field in form %}
+                        {% for error in field.errors %}
+                          errorMessages += "{{ error|escapejs }}\n";
+                        {% endfor %}
+                      {% endfor %}
+                      Swal.fire({
+                        title: 'Form validation error!',
+                        text: errorMessages,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                      });
+                    </script>
+                    {% endif %}
                 </div>
                 <!-- Contact Form Ends -->
               </div>
@@ -1036,5 +1064,6 @@
 	<script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/menu.js' %}"></script>
     <script src="{% static 'js/custom.js' %}"></script>
+    
   </body>
 </html>
