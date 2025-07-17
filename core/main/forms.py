@@ -1,5 +1,6 @@
 from django import forms
 from django.core.validators import EmailValidator
+from captcha.fields import CaptchaField
 
 
 
@@ -8,6 +9,8 @@ class ContactForm(forms.Form):
     email = forms.EmailField(required=True, label='YOUR EMAIL', validators=[EmailValidator()])
     subject = forms.CharField(max_length=200, required=True, label='YOUR SUBJECT')
     message = forms.CharField(widget=forms.Textarea, required=True, label='YOUR MESSAGE')
+    captcha = CaptchaField()
+
 
     def clean_email(self):
         email = self.cleaned_data.get('email')

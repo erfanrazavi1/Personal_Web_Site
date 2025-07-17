@@ -37,6 +37,9 @@
     <!-- Modernizr JS File -->
     <script src="{% static 'js/modernizr.min.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+   
 
   </head>
   <body class="dark home-page">
@@ -829,17 +832,44 @@
                           <input autocomplete="off" type="text" name="subject" placeholder="YOUR SUBJECT">
                         </div>
                         <div class="col-12">
-                          <textarea name="message" placeholder="YOUR MESSAGE"></textarea>
+                          <textarea name="message" placeholder="YOUR MESSAGE" required></textarea>
+                        </div>
+
+                        <div class="col-12 col-md-4 d-flex align-items-center captcha-group" style="gap: 10px;">
+                          <img class="captcha" src="{{ captcha_image_url }}" alt="captcha" style="height: 42px;" />
+
+                          <button type="button" class="js-captcha-refresh btn btn-outline-secondary" style="padding: 0 10px;">↻</button>
+                        </div>
+
+                        <div class="col-12 col-md-4">
+                          <input type="text" name="captcha_1" id="id_captcha_1" class="form-control" placeholder="Enter Captcha" required />
+                          <input type="hidden" name="captcha_0" id="id_captcha_0" value="{{ form.captcha.value.key }}" />
+                        </div>
+                           <script>
+                              $('.js-captcha-refresh').click(function (e) {
+                                e.preventDefault();
+
+                                $.getJSON("/captcha/refresh/", function (data) {
+                                  
+                                  $('.captcha').attr('src', data.image_url);
+                                  $('#id_captcha_0').val(data.key);
+                                });
+                              });
+                            </script>
+                        <div class="col-12">
                           <button type="submit" class="button">
                             <span class="button-text">Send Message</span>
                             <span class="button-icon fa fa-send"></span>
                           </button>
                         </div>
+
                         <div class="col-12 form-message">
                           <span class="output_message text-center font-weight-600 text-uppercase"></span>
                         </div>
                       </div>
                     </div>
+
+                    <!-- Captcha Refresh Button -->
                   </form>
                   
                     <!-- Success message popup -->
