@@ -28,7 +28,7 @@ jobs:
         run: docker ps
 
       - name: 🧪 Run flake8 inside container
-        run: docker compose exec personal_site sh -c "flake8 ."
+        run: docker compose run --rm personal_site sh -c "flake8 ."
 
       - name: 📦 Shut down containers
         run: docker compose down
