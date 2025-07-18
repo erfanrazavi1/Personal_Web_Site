@@ -1,0 +1,27 @@
+name: Django CI with Docker Compose
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Clone repo
+        uses: actions/checkout@v4
+
+      - name: 🐳 Set up Docker Compose
+        run: docker compose  up -d --build
+
+      - name: ⏳ Wait for containers to be ready
+        run: sleep 5
+
+      - name: 🧪 Run flake8 and pytest inside container
+        run: docker exec personal_site sh -c "flake8 ."
+
+      - name: 📦 Shut down containers
+        run: docker compose -f docker-compose-stage.yml down
