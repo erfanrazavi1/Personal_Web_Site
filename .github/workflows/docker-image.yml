@@ -13,6 +13,12 @@ jobs:
     steps:
       - name: 📥 Clone repo
         uses: actions/checkout@v4
+      - name: Create .env file
+        run: |
+          echo "DEBUG=${{ secrets.DEBUG }}" >> Personal_Web_Site/.env
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> Personal_Web_Site/.env
+          echo "EMAIL_HOST_USER=${{ secrets.EMAIL_HOST }}" >> Personal_Web_Site/.env
+          echo "EMAIL_HOST_PASSWORD=${{ secrets.EMAIL_HOST_PASS }}" >> Personal_Web_Site/.env
 
       - name: 🐳 Set up Docker Compose
         run: docker compose  up -d --build
