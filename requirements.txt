@@ -3,3 +3,6 @@ python-decouple
 
 
 django-simple-captcha
+
+black
+flake8
