@@ -181,3 +181,7 @@ cython_debug/
 .cursorindexingignore
 
 .env
+localhost.pem
+localhost-key.pem
+*.pem
+*.key

@@ -6,3 +6,5 @@ django-simple-captcha
 
 black
 flake8
+
+gunicorn
