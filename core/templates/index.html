@@ -1,4 +1,5 @@
-﻿{% load static %}
+﻿
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
+
+    
 
     <!-- Template CSS Files -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
@@ -17,7 +19,7 @@
     <link href="{% static 'css/circle.css' %}" rel="stylesheet">
     <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
-
+    
     <!-- CSS Skin File -->
     <link href="{% static 'css/skins/yellow.css' %}" rel="stylesheet">
     <!-- Live Style Switcher - demo only -->
@@ -42,7 +44,11 @@
    
 
   </head>
+ 
   <body class="dark home-page">
+
+    </form>
+
     <!-- Live Style Switcher Starts - demo only -->
     <div id="switcher" class="">
       <div class="content-switcher">
@@ -181,6 +187,7 @@
       <!-- Fixed Navigation Ends -->
       <!-- Mobile Menu Starts -->
       <nav class="d-block d-lg-none">
+
         <div class="inputmobile" id="inputmobile">
           <div id="trigger-mobile" class="trigger-mobile">
             <span></span>
@@ -232,7 +239,7 @@
           <div class="container-fluid main-container container-home p-0">
             <div class="color-block d-none d-lg-block"></div>
             <div class="row home-details-container align-items-center">
-			  <img class="col-lg-4 position-fixed d-none d-lg-block" src="{% static 'img/erfan.jpg' %}" alt="">
+			  <img class="col-lg-4 position-fixed d-none d-lg-block" src="{% static 'img/erfan1.jpg' %}" alt="">
               <div class="col-12 col-lg-8 offset-lg-4 home-details text-left text-sm-center text-lg-left">
                 <div>
                   <img src="{% static 'img/img-mobile.jpg' %}" class="img-fluid main-img-mobile d-none d-sm-block d-lg-none" alt="my picture">
@@ -276,7 +283,7 @@
                       <h3 class="text-uppercase custom-title mb-0 ft-wt-600">personal infos</h3>
                     </div>
                     <div class="col-12 d-block d-sm-none">
-                      <img src="{% static 'img/erfan.jpg' %}" class="img-fluid main-img-mobile" alt="my picture">
+                      <img src="{% static 'img/erfan-WEb.jpg' %}" class="img-fluid main-img-mobile" alt="my picture">
                     </div>
                     <div class="col-6">
                       <ul class="about-list list-unstyled open-sans-font">

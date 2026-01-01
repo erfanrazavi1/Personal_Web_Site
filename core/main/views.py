@@ -3,7 +3,9 @@ from django.core.mail import send_mail
 from django.contrib import messages
 from django.conf import settings
 from django.urls import reverse_lazy
+from django.utils.translation import gettext as _
 from main.forms import ContactForm
+
 
 
 class HomeView(FormView):
